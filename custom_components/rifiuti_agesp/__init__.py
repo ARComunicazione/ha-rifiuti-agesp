@@ -86,15 +86,19 @@ async def async_setup_entry(hass: HomeAssistant, entry: RifiutiConfigEntry) -> b
     impronta = await hass.async_add_executor_job(
         lambda: hashlib.sha1((CARTELLA_FRONTEND / FILE_PANNELLO).read_bytes()).hexdigest()[:10]
     )
+    url_modulo = f"{URL_STATICI}/{FILE_PANNELLO}?v={impronta}"
     await panel_custom.async_register_panel(
         hass,
         frontend_url_path=URL_PANNELLO,
         webcomponent_name=COMPONENTE_PANNELLO,
         sidebar_title=TITOLO_PANNELLO,
         sidebar_icon=ICONA_PANNELLO,
-        module_url=f"{URL_STATICI}/{FILE_PANNELLO}?v={impronta}",
+        module_url=url_modulo,
         require_admin=False,
     )
+    # lo stesso file contiene la card per le dashboard (custom:rifiuti-agesp-card)
+    frontend.add_extra_js_url(hass, url_modulo)
+    entry.async_on_unload(lambda: frontend.remove_extra_js_url(hass, url_modulo))
     return True
 
 

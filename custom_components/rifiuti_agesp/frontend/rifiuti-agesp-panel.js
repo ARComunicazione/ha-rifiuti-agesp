@@ -1,8 +1,13 @@
-// Pagina "Rifiuti" dell'integrazione rifiuti_agesp: calendario della raccolta e ricerca nel dizionario AGESP.
-// Web component senza dipendenze: usa i colori del tema attivo di Home Assistant.
+// Interfaccia dell'integrazione rifiuti_agesp: ricerca nel dizionario AGESP e calendario della raccolta.
+// Tre elementi senza dipendenze, che usano i colori del tema attivo di Home Assistant:
+//  - rifiuti-agesp-vista  il contenuto (ricerca e/o calendario)
+//  - rifiuti-agesp-panel  la pagina "Rifiuti" della barra laterale
+//  - rifiuti-agesp-card   la card per le dashboard (type: custom:rifiuti-agesp-card)
+// Lo stile "vetro" dei riquadri si regola con le variabili --rifiuti-vetro-* (es. da card-mod).
 
 const ESEMPI = ["polistirolo", "pile", "cartone della pizza", "olio fritto", "capsule caffè", "pannolini"];
 const ATTESA_DIGITAZIONE = 120;
+const MODI = ["tutto", "ricerca", "calendario"];
 const ETICHETTE_ESITO = {
   cmr: "Portalo al",
   telefonare: "Non va nei bidoni: chiama il",
@@ -20,7 +25,7 @@ const coloreTesto = (hex) => {
   return l > 0.62 ? "#1f2937" : "#ffffff";
 };
 
-const normalizza = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+const normalizza = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 
 // date ISO "2026-10-17" lette come giorno locale, senza spostamenti di fuso orario
 const dataLocale = (iso) => {
@@ -57,10 +62,14 @@ const evidenzia = (voce, testo) => {
   return out + esc(voce.slice(i));
 };
 
-class RifiutiAgespPanel extends HTMLElement {
+class RifiutiAgespVista extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+    this._mostra = "tutto";
+    this._titolo = false;
+    this.sincronizzaUrl = false; // solo la pagina: la ricerca finisce nell'indirizzo (?q=…)
+    this.fuocoIniziale = false; // solo la pagina: cursore nella ricerca all'apertura
     this._info = null;
     this._calendario = null;
     this._risposta = null;
@@ -73,16 +82,17 @@ class RifiutiAgespPanel extends HTMLElement {
     const primo = !this._hass;
     this._hass = hass;
     if (primo) this._avvia();
-    this._aggiornaMenu();
   }
 
-  set narrow(narrow) {
-    this._narrow = narrow;
-    this._aggiornaMenu();
+  set mostra(valore) {
+    this._mostra = MODI.includes(valore) ? valore : "tutto";
+    if (this._info) this._ridisegna();
   }
 
-  set panel(_panel) {}
-  set route(_route) {}
+  set titolo(valore) {
+    this._titolo = Boolean(valore);
+    if (this._info) this._ridisegna();
+  }
 
   connectedCallback() {
     // la pagina può restare aperta per giorni (tablet): a mezzanotte si aggiorna da sola
@@ -94,6 +104,10 @@ class RifiutiAgespPanel extends HTMLElement {
   disconnectedCallback() {
     clearInterval(this._controlloGiorno);
     document.removeEventListener("visibilitychange", this._suVisibilita);
+  }
+
+  get _conRicerca() {
+    return this._mostra !== "calendario";
   }
 
   async _controllaGiorno() {
@@ -119,51 +133,47 @@ class RifiutiAgespPanel extends HTMLElement {
       this._mostraErrore(err);
       return;
     }
-    const q = new URLSearchParams(location.search).get("q");
-    if (q) {
-      this._input.value = q;
-      this._cerca(q);
-    } else {
-      this._disegnaRisultati();
-    }
-    if (matchMedia("(pointer: fine)").matches) this._input.focus();
+    const q = this.sincronizzaUrl ? new URLSearchParams(location.search).get("q") : null;
+    if (q && this._conRicerca) this._imposta(q);
+    else this._disegnaRisultati();
+    if (this.fuocoIniziale && this._conRicerca && matchMedia("(pointer: fine)").matches) this._input.focus();
   }
 
-  _aggiornaMenu() {
-    const menu = this.shadowRoot.querySelector("ha-menu-button");
-    if (!menu || !this._hass) return;
-    menu.hass = this._hass;
-    menu.narrow = this._narrow;
+  _ridisegna() {
+    const testo = this._testo;
+    this._disegnaStruttura();
+    if (testo && this._conRicerca) this._imposta(testo);
+    else {
+      this._risposta = null;
+      this._disegnaRisultati();
+    }
   }
 
   _disegnaStruttura() {
     this.shadowRoot.innerHTML = `
-      <style>${STILE}</style>
-      <div class="toolbar">
-        <ha-menu-button></ha-menu-button>
-        <button class="indietro" aria-label="Indietro" hidden><ha-icon icon="mdi:arrow-left"></ha-icon></button>
-        <div class="titolo">Rifiuti</div>
-      </div>
-      <main>
-        <h1>Dove lo butto?</h1>
-        <div class="ricerca">
-          <ha-icon icon="mdi:magnify"></ha-icon>
-          <input type="search" placeholder="Scrivi cosa devi buttare…" autocomplete="off" spellcheck="false"
-                 aria-label="Cosa devi buttare">
-          <button class="pulisci" aria-label="Cancella" hidden><ha-icon icon="mdi:close"></ha-icon></button>
-        </div>
-        <section class="risultati" aria-live="polite"></section>
-        <footer></footer>
-      </main>`;
+      <style>${STILE_VISTA}</style>
+      ${this._titolo && this._conRicerca ? "<h1>Dove lo butto?</h1>" : ""}
+      ${
+        this._conRicerca
+          ? `<div class="ricerca">
+              <ha-icon icon="mdi:magnify"></ha-icon>
+              <input type="search" placeholder="Scrivi cosa devi buttare…" autocomplete="off" spellcheck="false"
+                     aria-label="Cosa devi buttare">
+              <button class="pulisci" aria-label="Cancella" hidden><ha-icon icon="mdi:close"></ha-icon></button>
+            </div>`
+          : ""
+      }
+      <section class="risultati" aria-live="polite"></section>
+      <footer></footer>`;
     this._input = this.shadowRoot.querySelector("input");
     this._pulisci = this.shadowRoot.querySelector(".pulisci");
     this._risultati = this.shadowRoot.querySelector(".risultati");
 
-    // sul tablet in kiosk la barra laterale è nascosta: senza "indietro" la pagina sarebbe un vicolo cieco
-    const indietro = this.shadowRoot.querySelector(".indietro");
-    indietro.hidden = history.length <= 1;
-    indietro.addEventListener("click", () => history.back());
-
+    this._risultati.addEventListener("click", (e) => {
+      const esempio = e.target.closest("[data-esempio]");
+      if (esempio) this._imposta(esempio.dataset.esempio);
+    });
+    if (!this._input) return;
     this._input.addEventListener("input", () => {
       clearTimeout(this._timer);
       this._timer = setTimeout(() => this._cerca(this._input.value), ATTESA_DIGITAZIONE);
@@ -175,11 +185,6 @@ class RifiutiAgespPanel extends HTMLElement {
       this._imposta("");
       this._input.focus();
     });
-    this._risultati.addEventListener("click", (e) => {
-      const esempio = e.target.closest("[data-esempio]");
-      if (esempio) this._imposta(esempio.dataset.esempio);
-    });
-    this._aggiornaMenu();
   }
 
   _imposta(testo) {
@@ -190,10 +195,12 @@ class RifiutiAgespPanel extends HTMLElement {
   async _cerca(testo) {
     this._testo = testo.trim();
     this._pulisci.hidden = !this._testo;
-    const url = new URL(location.href);
-    if (this._testo) url.searchParams.set("q", this._testo);
-    else url.searchParams.delete("q");
-    history.replaceState(history.state, "", url);
+    if (this.sincronizzaUrl) {
+      const url = new URL(location.href);
+      if (this._testo) url.searchParams.set("q", this._testo);
+      else url.searchParams.delete("q");
+      history.replaceState(history.state, "", url);
+    }
 
     const numero = ++this._richiesta;
     if (!this._testo) {
@@ -214,7 +221,7 @@ class RifiutiAgespPanel extends HTMLElement {
   _mostraErrore(err) {
     this.shadowRoot.querySelector(".risultati").innerHTML = `
       <div class="vetro avviso"><ha-icon icon="mdi:alert-circle-outline"></ha-icon>
-      <div>Ricerca non disponibile: ${esc(err?.message || err)}</div></div>`;
+      <div>Rifiuti AGESP non disponibile: ${esc(err?.message || err)}</div></div>`;
   }
 
   // dettagli pratici di una destinazione: indirizzo, telefono, ecc.
@@ -265,9 +272,14 @@ class RifiutiAgespPanel extends HTMLElement {
   _disegnaRisultati() {
     if (!this._info) return;
     const info = this._info;
-    this.shadowRoot.querySelector("footer").innerHTML =
-      `${esc(info.fonte)} · ${info.numero_voci} voci · Servizio clienti ${esc(info.contatti.numero_verde)}`;
+    this.shadowRoot.querySelector("footer").innerHTML = this._conRicerca
+      ? `${esc(info.fonte)} · ${info.numero_voci} voci · Servizio clienti ${esc(info.contatti.numero_verde)}`
+      : "";
 
+    if (!this._conRicerca) {
+      this._risultati.innerHTML = this._sezioneCalendario();
+      return;
+    }
     const r = this._risposta;
     if (!r) {
       this._risultati.innerHTML = this._vuoto();
@@ -306,7 +318,7 @@ class RifiutiAgespPanel extends HTMLElement {
       <div class="esempi">Prova con:
         ${ESEMPI.map((e) => `<button class="chip" data-esempio="${esc(e)}">${esc(e)}</button>`).join("")}
       </div>
-      ${this._sezioneCalendario()}
+      ${this._mostra === "tutto" ? this._sezioneCalendario() : ""}
       <h2>Dove vanno i rifiuti</h2>
       <div class="vetro legenda">${legenda}</div>`;
   }
@@ -371,48 +383,107 @@ class RifiutiAgespPanel extends HTMLElement {
   }
 }
 
-const STILE = `
+class RifiutiAgespPanel extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" }).innerHTML = `
+      <style>${STILE_PANNELLO}</style>
+      <div class="toolbar">
+        <ha-menu-button></ha-menu-button>
+        <button class="indietro" aria-label="Indietro" hidden><ha-icon icon="mdi:arrow-left"></ha-icon></button>
+        <div class="titolo">Rifiuti</div>
+      </div>
+      <main><rifiuti-agesp-vista></rifiuti-agesp-vista></main>`;
+    this._vista = this.shadowRoot.querySelector("rifiuti-agesp-vista");
+    this._vista.titolo = true;
+    this._vista.sincronizzaUrl = true;
+    this._vista.fuocoIniziale = true;
+    // sul tablet in kiosk la barra laterale è nascosta: senza "indietro" la pagina sarebbe un vicolo cieco
+    const indietro = this.shadowRoot.querySelector(".indietro");
+    indietro.hidden = history.length <= 1;
+    indietro.addEventListener("click", () => history.back());
+  }
+
+  set hass(hass) {
+    this._hass = hass;
+    this._vista.hass = hass;
+    this._aggiornaMenu();
+  }
+
+  set narrow(narrow) {
+    this._narrow = narrow;
+    this._aggiornaMenu();
+  }
+
+  set panel(_panel) {}
+  set route(_route) {}
+
+  _aggiornaMenu() {
+    const menu = this.shadowRoot.querySelector("ha-menu-button");
+    if (!this._hass) return;
+    menu.hass = this._hass;
+    menu.narrow = this._narrow;
+  }
+}
+
+// Card per le dashboard. Opzioni: mostra (tutto | ricerca | calendario), titolo (true/false).
+// Lo sfondo della card è trasparente: i riquadri interni usano lo stile --rifiuti-vetro-*.
+class RifiutiAgespCard extends HTMLElement {
+  setConfig(config) {
+    const mostra = config.mostra ?? "tutto";
+    if (!MODI.includes(mostra)) throw new Error(`mostra deve essere uno tra: ${MODI.join(", ")}`);
+    this._config = { ...config, mostra };
+    if (!this._vista) {
+      this.attachShadow({ mode: "open" }).innerHTML = `
+        <style>ha-card { background: none; border: none; box-shadow: none; padding: 0; }</style>
+        <ha-card><rifiuti-agesp-vista></rifiuti-agesp-vista></ha-card>`;
+      this._vista = this.shadowRoot.querySelector("rifiuti-agesp-vista");
+    }
+    this._vista.mostra = mostra;
+    this._vista.titolo = config.titolo ?? false;
+    if (this._hass) this._vista.hass = this._hass;
+  }
+
+  set hass(hass) {
+    this._hass = hass;
+    if (this._vista) this._vista.hass = hass;
+  }
+
+  getCardSize() {
+    return this._config?.mostra === "calendario" ? 6 : 8;
+  }
+
+  getGridOptions() {
+    return { columns: "full", min_columns: 6 };
+  }
+
+  static getStubConfig() {
+    return { mostra: "tutto" };
+  }
+}
+
+const VETRO = `
+    background: var(--rifiuti-vetro-sfondo, var(--ha-card-background, var(--card-background-color)));
+    -webkit-backdrop-filter: var(--rifiuti-vetro-sfocatura, var(--ha-card-backdrop-filter, blur(14px)));
+    backdrop-filter: var(--rifiuti-vetro-sfocatura, var(--ha-card-backdrop-filter, blur(14px)));
+    border: 1px solid var(--rifiuti-vetro-bordo, var(--ha-card-border-color, var(--divider-color)));
+    box-shadow: var(--rifiuti-vetro-ombra, var(--ha-card-box-shadow, none));`;
+
+const STILE_VISTA = `
   :host {
     display: block;
-    min-height: 100vh;
-    background: var(--lovelace-background, var(--primary-background-color));
-    background-attachment: fixed;
+    container-type: inline-size;
     color: var(--primary-text-color);
-    font-family: var(--ha-font-family-body, var(--paper-font-body1_-_font-family, inherit));
-    --raggio: var(--ha-card-border-radius, 16px);
+    --raggio: var(--rifiuti-vetro-raggio, var(--ha-card-border-radius, 16px));
   }
-  .toolbar {
-    display: flex; align-items: center; gap: 4px;
-    height: var(--header-height, 56px); padding: 0 12px;
-    color: var(--app-header-text-color, var(--primary-text-color));
-    background: var(--app-header-background-color, transparent);
-    border-bottom: var(--app-header-border-bottom, none);
-  }
-  .titolo { font-size: 20px; margin-left: 8px; }
-  .indietro {
-    border: 0; background: transparent; color: inherit;
-    width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
-  }
-  .indietro:hover { background: var(--divider-color); }
-  .indietro[hidden] { display: none; }
-  main { max-width: 760px; margin: 0 auto; padding: 8px 16px 48px; box-sizing: border-box; }
   h1 { font-size: 28px; font-weight: 500; margin: 16px 4px 16px; }
   h2 { font-size: 15px; font-weight: 500; color: var(--secondary-text-color); margin: 24px 4px 8px; }
   h2 small { font-weight: 400; }
-  .vetro {
-    background: var(--ha-card-background, var(--card-background-color));
-    -webkit-backdrop-filter: var(--ha-card-backdrop-filter, blur(14px));
-    backdrop-filter: var(--ha-card-backdrop-filter, blur(14px));
-    border: 1px solid var(--ha-card-border-color, var(--divider-color));
-    border-radius: var(--raggio);
-    box-shadow: var(--ha-card-box-shadow, none);
-  }
+  .vetro { ${VETRO} border-radius: var(--raggio); }
   .ricerca {
     display: flex; align-items: center; gap: 10px;
     padding: 0 8px 0 18px; height: 60px;
-    background: var(--ha-card-background, var(--card-background-color));
-    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-    border: 1px solid var(--ha-card-border-color, var(--divider-color));
+    ${VETRO}
     border-radius: 30px;
   }
   .ricerca:focus-within { border-color: var(--primary-color); }
@@ -443,8 +514,9 @@ const STILE = `
   .legenda-voce span { font-size: 13px; color: var(--secondary-text-color); }
   .bollino { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; }
   .raccolta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .risultati > .raccolta:first-child { margin-top: 0; }
   .giorno { padding: 16px 18px; }
-  .giorno.attivo { border-color: var(--primary-color); box-shadow: 0 0 22px -8px var(--primary-color), var(--ha-card-box-shadow, 0 0 0 transparent); }
+  .giorno.attivo { border-color: var(--primary-color); box-shadow: 0 0 22px -8px var(--primary-color), var(--rifiuti-vetro-ombra, var(--ha-card-box-shadow, 0 0 0 transparent)); }
   .giorno .quando { font-size: 18px; font-weight: 500; margin-top: 4px; }
   .giorno .quando small { font-size: 14px; font-weight: 400; color: var(--secondary-text-color); }
   .giorno .pillole { margin-bottom: 0; }
@@ -456,7 +528,7 @@ const STILE = `
   .esito {
     margin-top: 20px; padding: 18px 20px;
     border-color: var(--accento);
-    box-shadow: 0 0 24px -6px var(--accento), var(--ha-card-box-shadow, 0 0 0 transparent);
+    box-shadow: 0 0 24px -6px var(--accento), var(--rifiuti-vetro-ombra, var(--ha-card-box-shadow, 0 0 0 transparent));
   }
   .etichetta { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--secondary-text-color); }
   .pillole { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0 8px; }
@@ -480,23 +552,81 @@ const STILE = `
     display: flex; align-items: flex-start; gap: 6px; margin-top: 4px; line-height: 18px;
     font-size: 13px; color: var(--secondary-text-color); --mdc-icon-size: 16px;
   }
-  .esito .dettaglio { font-size: 15px; --mdc-icon-size: 18px; }
   .dettaglio ha-icon, .nota ha-icon { flex: none; }
   .esito .dettaglio { line-height: 22px; }
   a { color: var(--primary-color); }
   .telefono { white-space: nowrap; }
+  .esito .dettaglio { font-size: 15px; --mdc-icon-size: 18px; }
   .avviso { display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; margin-top: 20px; line-height: 1.5; }
+  .risultati > .avviso:first-child { margin-top: 0; }
   .avviso > ha-icon { color: var(--warning-color, #f4b400); flex: none; }
   footer { margin: 32px 4px 0; font-size: 12px; color: var(--secondary-text-color); text-align: center; }
-  @media (max-width: 600px) {
+  footer:empty { display: none; }
+  /* adattamento alla larghezza disponibile (pagina o colonna della dashboard) */
+  @container (max-width: 560px) {
     h1 { font-size: 24px; }
     .elenco li { flex-direction: column; align-items: flex-start; }
     .destinazioni { justify-content: flex-start; max-width: none; }
     .legenda { grid-template-columns: 1fr; }
+  }
+  @container (max-width: 480px) {
     .raccolta { grid-template-columns: 1fr; }
   }
 `;
 
-// dopo un aggiornamento dell'integrazione il browser già aperto carica di nuovo il modulo:
-// il componente esiste già e la versione nuova arriva al prossimo ricaricamento della pagina
-if (!customElements.get("rifiuti-agesp-panel")) customElements.define("rifiuti-agesp-panel", RifiutiAgespPanel);
+const STILE_PANNELLO = `
+  :host {
+    display: block;
+    min-height: 100vh;
+    background: var(--lovelace-background, var(--primary-background-color));
+    background-attachment: fixed;
+    color: var(--primary-text-color);
+    font-family: var(--ha-font-family-body, var(--paper-font-body1_-_font-family, inherit));
+  }
+  .toolbar {
+    display: flex; align-items: center; gap: 4px;
+    height: var(--header-height, 56px); padding: 0 12px;
+    color: var(--app-header-text-color, var(--primary-text-color));
+    background: var(--app-header-background-color, transparent);
+    border-bottom: var(--app-header-border-bottom, none);
+  }
+  .titolo { font-size: 20px; margin-left: 8px; }
+  .indietro {
+    border: 0; background: transparent; color: inherit; cursor: pointer;
+    width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
+  }
+  .indietro:hover { background: var(--divider-color); }
+  .indietro[hidden] { display: none; }
+  main { max-width: 760px; margin: 0 auto; padding: 8px 16px 48px; box-sizing: border-box; }
+`;
+
+// Registrazione dei componenti.
+// All'avvio il frontend di HA sostituisce window.customElements con un registro suo, e i moduli
+// aggiunti dalle integrazioni (come questo, caricato in tutte le pagine per la card) possono
+// partire PRIMA: registrati subito finirebbero nel registro del browser, che HA non guarda più,
+// e la card risulterebbe "sconosciuta" (Errore di configurazione). Quindi si aspetta che l'app
+// <home-assistant> sia definita e solo allora si legge window.customElements.
+// Se il modulo viene caricato di nuovo (aggiornamento a pagina aperta) i componenti esistono già:
+// la versione nuova arriva al prossimo ricaricamento della pagina.
+const registraElementi = () => {
+  const registro = window.customElements;
+  for (const [nome, classe] of [
+    ["rifiuti-agesp-vista", RifiutiAgespVista],
+    ["rifiuti-agesp-panel", RifiutiAgespPanel],
+    ["rifiuti-agesp-card", RifiutiAgespCard],
+  ]) {
+    if (!registro.get(nome)) registro.define(nome, classe);
+  }
+};
+
+if (window.customElements.get("home-assistant")) registraElementi();
+else window.customElements.whenDefined("home-assistant").then(registraElementi);
+
+window.customCards = window.customCards || [];
+if (!window.customCards.some((c) => c.type === "rifiuti-agesp-card")) {
+  window.customCards.push({
+    type: "rifiuti-agesp-card",
+    name: "Rifiuti AGESP",
+    description: "Ricerca nel dizionario dei rifiuti AGESP e calendario della raccolta.",
+  });
+}

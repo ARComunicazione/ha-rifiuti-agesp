@@ -78,6 +78,32 @@ Senza HACS: copiare `custom_components/rifiuti_agesp` in `/config/custom_compone
         message: "Stasera esponi: {{ states('sensor.rifiuti_agesp_domani') }}"
   ```
 
+### Card per le dashboard (v0.3.0)
+La stessa interfaccia della pagina Rifiuti è disponibile come card, da mettere in una vista
+della dashboard (con lo sfondo, la barra di navigazione e lo stile della dashboard). Il file è
+caricato dall'integrazione: non serve aggiungere risorse a mano.
+
+```yaml
+type: custom:rifiuti-agesp-card
+mostra: tutto        # tutto | ricerca | calendario
+titolo: false        # true mostra "Dove lo butto?" sopra la ricerca
+```
+
+La card ha sfondo trasparente; i riquadri interni usano il tema di Home Assistant oppure, se
+definite (per esempio con card-mod), queste variabili:
+
+```yaml
+card_mod:
+  style: |
+    ha-card {
+      --rifiuti-vetro-sfondo: rgba(15, 23, 42, 0.55);
+      --rifiuti-vetro-sfocatura: blur(14px);
+      --rifiuti-vetro-bordo: rgba(148, 163, 184, 0.25);
+      --rifiuti-vetro-raggio: 22px;
+      --rifiuti-vetro-ombra: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+```
+
 ## Dati
 - `custom_components/rifiuti_agesp/data/dizionario_agesp.json`: 555 voci estratte dal
   *Dizionario dei rifiuti* AGESP, edizione gennaio 2024 (il PDF si scarica da
@@ -118,5 +144,3 @@ serve Home Assistant. Per provare l'integrazione completa c'è l'istanza Docker 
   sensori qui sopra.
 - **Assistente vocale:** rispondere a domande come *"dove butto il polistirolo?"* tramite
   Assist (frasi personalizzate + gestore d'intento che usa lo stesso motore di ricerca).
-- Card Lovelace con la stessa ricerca, per poterla mettere in una dashboard (es. sul tablet in
-  kiosk mode, dove la barra laterale è nascosta).

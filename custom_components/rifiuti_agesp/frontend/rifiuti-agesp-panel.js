@@ -141,6 +141,7 @@ class RifiutiAgespPanel extends HTMLElement {
       <style>${STILE}</style>
       <div class="toolbar">
         <ha-menu-button></ha-menu-button>
+        <button class="indietro" aria-label="Indietro" hidden><ha-icon icon="mdi:arrow-left"></ha-icon></button>
         <div class="titolo">Rifiuti</div>
       </div>
       <main>
@@ -157,6 +158,11 @@ class RifiutiAgespPanel extends HTMLElement {
     this._input = this.shadowRoot.querySelector("input");
     this._pulisci = this.shadowRoot.querySelector(".pulisci");
     this._risultati = this.shadowRoot.querySelector(".risultati");
+
+    // sul tablet in kiosk la barra laterale è nascosta: senza "indietro" la pagina sarebbe un vicolo cieco
+    const indietro = this.shadowRoot.querySelector(".indietro");
+    indietro.hidden = history.length <= 1;
+    indietro.addEventListener("click", () => history.back());
 
     this._input.addEventListener("input", () => {
       clearTimeout(this._timer);
@@ -383,6 +389,12 @@ const STILE = `
     border-bottom: var(--app-header-border-bottom, none);
   }
   .titolo { font-size: 20px; margin-left: 8px; }
+  .indietro {
+    border: 0; background: transparent; color: inherit;
+    width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
+  }
+  .indietro:hover { background: var(--divider-color); }
+  .indietro[hidden] { display: none; }
   main { max-width: 760px; margin: 0 auto; padding: 8px 16px 48px; box-sizing: border-box; }
   h1 { font-size: 28px; font-weight: 500; margin: 16px 4px 16px; }
   h2 { font-size: 15px; font-weight: 500; color: var(--secondary-text-color); margin: 24px 4px 8px; }

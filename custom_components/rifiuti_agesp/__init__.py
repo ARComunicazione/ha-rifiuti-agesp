@@ -1,4 +1,4 @@
-"""Rifiuti AGESP: dove buttare i rifiuti a Busto Arsizio (dizionario ufficiale AGESP)."""
+"""Rifiuti AGESP: dove buttare i rifiuti a Busto Arsizio e calendario della raccolta."""
 from __future__ import annotations
 
 import hashlib
@@ -8,7 +8,7 @@ import voluptuous as vol
 
 from homeassistant.components import frontend, panel_custom, websocket_api
 from homeassistant.components.http import StaticPathConfig
-from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant, ServiceCall, ServiceResponse, SupportsResponse, callback
 from homeassistant.exceptions import ServiceValidationError
 from homeassistant.helpers import config_validation as cv
@@ -31,7 +31,10 @@ from .const import (
     URL_PANNELLO,
     URL_STATICI,
 )
+from .dati import DatiRifiuti, RifiutiConfigEntry, calendario_da_opzioni
 from .search import MotoreRicerca
+
+PLATFORMS = [Platform.CALENDAR, Platform.SENSOR]
 
 CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
@@ -45,7 +48,7 @@ SCHEMA_CERCA = vol.Schema(
 )
 
 
-def _motore(hass: HomeAssistant) -> MotoreRicerca | None:
+def _dati(hass: HomeAssistant) -> DatiRifiuti | None:
     return hass.data.get(DOMAIN)
 
 
@@ -56,12 +59,13 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     )
     websocket_api.async_register_command(hass, ws_cerca)
     websocket_api.async_register_command(hass, ws_info)
+    websocket_api.async_register_command(hass, ws_calendario)
 
     async def cerca(call: ServiceCall) -> ServiceResponse:
-        motore = _motore(hass)
-        if motore is None:
+        dati = _dati(hass)
+        if dati is None:
             raise ServiceValidationError(translation_domain=DOMAIN, translation_key="non_configurata")
-        return motore.cerca(call.data[ATTR_TESTO], call.data[ATTR_LIMITE])
+        return dati.arricchisci(dati.motore.cerca(call.data[ATTR_TESTO], call.data[ATTR_LIMITE]))
 
     hass.services.async_register(
         DOMAIN, SERVIZIO_CERCA, cerca, schema=SCHEMA_CERCA, supports_response=SupportsResponse.ONLY
@@ -69,10 +73,14 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     return True
 
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Carica il dizionario e aggiunge la pagina "Rifiuti" alla barra laterale."""
+async def async_setup_entry(hass: HomeAssistant, entry: RifiutiConfigEntry) -> bool:
+    """Carica dizionario e calendario, crea le entità e la pagina "Rifiuti" nella barra laterale."""
     motore = await hass.async_add_executor_job(MotoreRicerca.da_file, FILE_DIZIONARIO, FILE_SINONIMI)
-    hass.data[DOMAIN] = motore
+    dati = DatiRifiuti(motore, calendario_da_opzioni(entry.options))
+    entry.runtime_data = dati
+    hass.data[DOMAIN] = dati
+
+    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
 
     # l'impronta del file nell'URL obbliga browser e tablet a scaricare la versione nuova
     impronta = await hass.async_add_executor_job(
@@ -90,10 +98,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     return True
 
 
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+async def async_unload_entry(hass: HomeAssistant, entry: RifiutiConfigEntry) -> bool:
+    if not await hass.config_entries.async_unload_platforms(entry, PLATFORMS):
+        return False
     frontend.async_remove_panel(hass, URL_PANNELLO, warn_if_unknown=False)
     hass.data.pop(DOMAIN, None)
     return True
+
+
+def _non_configurata(connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None:
+    connection.send_error(msg["id"], "non_configurata", "Integrazione Rifiuti AGESP non configurata")
 
 
 @websocket_api.websocket_command(
@@ -105,18 +119,25 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 )
 @callback
 def ws_cerca(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None:
-    motore = _motore(hass)
-    if motore is None:
-        connection.send_error(msg["id"], "non_configurata", "Integrazione Rifiuti AGESP non configurata")
+    if (dati := _dati(hass)) is None:
+        _non_configurata(connection, msg)
         return
-    connection.send_result(msg["id"], motore.cerca(msg[ATTR_TESTO], msg[ATTR_LIMITE]))
+    connection.send_result(msg["id"], dati.arricchisci(dati.motore.cerca(msg[ATTR_TESTO], msg[ATTR_LIMITE])))
 
 
 @websocket_api.websocket_command({vol.Required("type"): f"{DOMAIN}/info"})
 @callback
 def ws_info(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None:
-    motore = _motore(hass)
-    if motore is None:
-        connection.send_error(msg["id"], "non_configurata", "Integrazione Rifiuti AGESP non configurata")
+    if (dati := _dati(hass)) is None:
+        _non_configurata(connection, msg)
         return
-    connection.send_result(msg["id"], motore.info())
+    connection.send_result(msg["id"], dati.motore.info())
+
+
+@websocket_api.websocket_command({vol.Required("type"): f"{DOMAIN}/calendario"})
+@callback
+def ws_calendario(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None:
+    if (dati := _dati(hass)) is None:
+        _non_configurata(connection, msg)
+        return
+    connection.send_result(msg["id"], dati.stato_calendario())

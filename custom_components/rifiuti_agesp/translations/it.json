@@ -3,11 +3,90 @@
     "step": {
       "user": {
         "title": "Rifiuti AGESP",
-        "description": "Aggiunge la pagina **Rifiuti** alla barra laterale, con la ricerca nel Dizionario dei rifiuti AGESP di Busto Arsizio (ed. gennaio 2024)."
+        "description": "Aggiunge la pagina **Rifiuti** alla barra laterale, con la ricerca nel Dizionario dei rifiuti AGESP di Busto Arsizio (ed. gennaio 2024), e il calendario della raccolta porta a porta."
+      },
+      "calendario": {
+        "title": "Calendario della raccolta",
+        "description": "Scegli i giorni della settimana in cui passa ogni frazione nella tua zona (calendario AGESP). Puoi modificarli in seguito da **Configura**.",
+        "data": {
+          "umido": "Umido (frazione organica)",
+          "plastica": "Plastica",
+          "carta": "Carta, cartone e Tetra Pak",
+          "vetro": "Vetro, alluminio e banda stagnata",
+          "secco": "Secco (frazione residua)",
+          "eccezioni": "Eccezioni (festività)"
+        },
+        "data_description": {
+          "umido": "Giorni in cui passa la raccolta",
+          "plastica": "Giorni in cui passa la raccolta",
+          "carta": "Giorni in cui passa la raccolta",
+          "vetro": "Giorni in cui passa la raccolta",
+          "secco": "Giorni in cui passa la raccolta",
+          "eccezioni": "Raccolte spostate o annullate, una per riga: `26/12/2026 > 28/12/2026` (spostata) oppure `06/01/2027 > annullata`. Il testo dopo # è un commento."
+        }
       }
+    },
+    "error": {
+      "eccezione_non_valida": "Riga non valida: «{riga}». Usa `GG/MM/AAAA > GG/MM/AAAA` oppure `GG/MM/AAAA > annullata`."
     },
     "abort": {
       "single_instance_allowed": "Rifiuti AGESP è già configurata."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Calendario della raccolta",
+        "description": "Scegli i giorni della settimana in cui passa ogni frazione nella tua zona (calendario AGESP). Puoi modificarli in seguito da **Configura**.",
+        "data": {
+          "umido": "Umido (frazione organica)",
+          "plastica": "Plastica",
+          "carta": "Carta, cartone e Tetra Pak",
+          "vetro": "Vetro, alluminio e banda stagnata",
+          "secco": "Secco (frazione residua)",
+          "eccezioni": "Eccezioni (festività)"
+        },
+        "data_description": {
+          "umido": "Giorni in cui passa la raccolta",
+          "plastica": "Giorni in cui passa la raccolta",
+          "carta": "Giorni in cui passa la raccolta",
+          "vetro": "Giorni in cui passa la raccolta",
+          "secco": "Giorni in cui passa la raccolta",
+          "eccezioni": "Raccolte spostate o annullate, una per riga: `26/12/2026 > 28/12/2026` (spostata) oppure `06/01/2027 > annullata`. Il testo dopo # è un commento."
+        }
+      }
+    },
+    "error": {
+      "eccezione_non_valida": "Riga non valida: «{riga}». Usa `GG/MM/AAAA > GG/MM/AAAA` oppure `GG/MM/AAAA > annullata`."
+    }
+  },
+  "selector": {
+    "giorno": {
+      "options": {
+        "0": "Lunedì",
+        "1": "Martedì",
+        "2": "Mercoledì",
+        "3": "Giovedì",
+        "4": "Venerdì",
+        "5": "Sabato",
+        "6": "Domenica"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "oggi": {
+        "name": "Oggi"
+      },
+      "domani": {
+        "name": "Domani"
+      },
+      "prossima_raccolta": {
+        "name": "Prossima raccolta"
+      },
+      "prossimo_ritiro": {
+        "name": "Prossimo ritiro {frazione}"
+      }
     }
   },
   "exceptions": {
@@ -18,7 +97,7 @@
   "services": {
     "cerca": {
       "name": "Cerca rifiuto",
-      "description": "Dice dove buttare un rifiuto secondo il dizionario AGESP.",
+      "description": "Dice dove buttare un rifiuto secondo il dizionario AGESP e, per la raccolta porta a porta, quando passa.",
       "fields": {
         "testo": {
           "name": "Rifiuto",

@@ -20,3 +20,7 @@ ATTR_TESTO = "testo"
 ATTR_LIMITE = "limite"
 LIMITE_PREDEFINITO = 10
 LIMITE_MASSIMO = 50
+
+CONF_ECCEZIONI = "eccezioni"
+NOME_DISPOSITIVO = "Rifiuti AGESP"
+GIORNI_PASSAGGI = 21   # quanti giorni di calendario mostra la pagina

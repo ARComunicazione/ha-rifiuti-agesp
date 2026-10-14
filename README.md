@@ -7,7 +7,8 @@ di AGESP a Busto Arsizio.
 1. HACS → menu ⋮ → **Repository personalizzati** → URL
    `https://github.com/ARComunicazione/ha-rifiuti-agesp`, tipo **Integrazione**.
 2. Cerca "Rifiuti AGESP" in HACS → **Scarica** → riavvia Home Assistant.
-3. Impostazioni → Dispositivi e servizi → **Aggiungi integrazione** → "Rifiuti AGESP".
+3. Impostazioni → Dispositivi e servizi → **Aggiungi integrazione** → "Rifiuti AGESP", poi
+   scegli i giorni di raccolta della tua zona (modificabili in seguito da **Configura**).
 4. Nella barra laterale compare **Rifiuti**.
 
 Senza HACS: copiare `custom_components/rifiuti_agesp` in `/config/custom_components/` e riavviare.
@@ -35,6 +36,46 @@ Senza HACS: copiare `custom_components/rifiuti_agesp` in `/config/custom_compone
     testo: polistirolo
     limite: 5
   response_variable: esito
+  ```
+
+### Calendario della raccolta (v0.2.0)
+- **Giorni di raccolta** per frazione (umido, plastica, carta, vetro e lattine, secco), impostati
+  dall'interfaccia: Impostazioni → Dispositivi e servizi → Rifiuti AGESP → **Configura**.
+- **Eccezioni per le festività**, una per riga nello stesso modulo:
+
+  ```
+  26/12/2026 > 28/12/2026     # raccolta spostata
+  06/01/2027 > annullata      # raccolta annullata
+  ```
+
+- Nella pagina **Rifiuti**: le schede "Oggi" e "Prossima raccolta" e i passaggi delle prossime tre
+  settimane. Nei risultati della ricerca compare il prossimo ritiro delle frazioni porta a porta
+  (es. *Plastica · prossimo ritiro sabato 17 ottobre*). Lo stesso dato arriva anche nella risposta
+  dell'azione `rifiuti_agesp.cerca`.
+- Entità (dispositivo "Rifiuti AGESP"), aggiornate a mezzanotte:
+
+  | Entità | Stato | Attributi |
+  |---|---|---|
+  | `calendar.rifiuti_agesp` | evento di oggi o il prossimo | un evento per ogni giorno di raccolta |
+  | `sensor.rifiuti_agesp_oggi` | `Umido, Carta, Vetro e lattine` / `Nessuna raccolta` | `frazioni`, `data`, `nota` |
+  | `sensor.rifiuti_agesp_domani` | come sopra, per domani | `frazioni`, `data`, `nota` |
+  | `sensor.rifiuti_agesp_prossima_raccolta` | data del primo passaggio dopo oggi | `frazioni`, `nomi`, `giorno`, `giorni_mancanti` |
+  | `sensor.rifiuti_agesp_prossimo_ritiro_*` | data del prossimo ritiro di quella frazione (oggi compreso) | `giorno`, `giorni_mancanti` |
+
+  Esempio di promemoria la sera prima:
+
+  ```yaml
+  alias: Promemoria rifiuti
+  triggers:
+    - trigger: time
+      at: "20:00:00"
+  conditions:
+    - condition: template
+      value_template: "{{ state_attr('sensor.rifiuti_agesp_domani', 'frazioni') | count > 0 }}"
+  actions:
+    - action: notify.notify
+      data:
+        message: "Stasera esponi: {{ states('sensor.rifiuti_agesp_domani') }}"
   ```
 
 ## Dati
@@ -67,12 +108,14 @@ Senza HACS: copiare `custom_components/rifiuti_agesp` in `/config/custom_compone
 ## Prove
 ```bash
 python3 tests/test_search.py
+python3 tests/test_calendario.py
 ```
-Sono 30 casi di ricerca reali e non serve Home Assistant per eseguirli.
+Ci sono 30 casi di ricerca reali e le prove del calendario, eccezioni comprese. Per eseguirli non
+serve Home Assistant. Per provare l'integrazione completa c'è l'istanza Docker in `../HA-Test`.
 
 ## Feature future
-- **Fase 2 — calendario dei passaggi:** entità `calendar` più sensori "oggi" e "prossimo
-  passaggio", da usare nel widget della home.
+- **Widget per la home** (dashboard AD Home): prossimo passaggio e raccolta del giorno, usando i
+  sensori qui sopra.
 - **Assistente vocale:** rispondere a domande come *"dove butto il polistirolo?"* tramite
   Assist (frasi personalizzate + gestore d'intento che usa lo stesso motore di ricerca).
 - Card Lovelace con la stessa ricerca, per poterla mettere in una dashboard (es. sul tablet in

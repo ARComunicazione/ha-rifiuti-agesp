@@ -3,11 +3,90 @@
     "step": {
       "user": {
         "title": "Rifiuti AGESP",
-        "description": "Adds the **Rifiuti** page to the sidebar, with search in the AGESP (Busto Arsizio) waste dictionary, January 2024 edition."
+        "description": "Adds the **Rifiuti** page to the sidebar (AGESP waste dictionary search) and the door-to-door collection calendar."
+      },
+      "calendario": {
+        "title": "Collection calendar",
+        "description": "Choose the weekdays each waste type is collected in your area.",
+        "data": {
+          "umido": "Organic waste",
+          "plastica": "Plastic",
+          "carta": "Paper and cardboard",
+          "vetro": "Glass and cans",
+          "secco": "Residual waste",
+          "eccezioni": "Exceptions (holidays)"
+        },
+        "data_description": {
+          "umido": "Collection days",
+          "plastica": "Collection days",
+          "carta": "Collection days",
+          "vetro": "Collection days",
+          "secco": "Collection days",
+          "eccezioni": "One per line: `26/12/2026 > 28/12/2026` (moved) or `06/01/2027 > annullata` (cancelled)."
+        }
       }
+    },
+    "error": {
+      "eccezione_non_valida": "Invalid line: «{riga}». Use `DD/MM/YYYY > DD/MM/YYYY` or `DD/MM/YYYY > annullata`."
     },
     "abort": {
       "single_instance_allowed": "Rifiuti AGESP is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Collection calendar",
+        "description": "Choose the weekdays each waste type is collected in your area.",
+        "data": {
+          "umido": "Organic waste",
+          "plastica": "Plastic",
+          "carta": "Paper and cardboard",
+          "vetro": "Glass and cans",
+          "secco": "Residual waste",
+          "eccezioni": "Exceptions (holidays)"
+        },
+        "data_description": {
+          "umido": "Collection days",
+          "plastica": "Collection days",
+          "carta": "Collection days",
+          "vetro": "Collection days",
+          "secco": "Collection days",
+          "eccezioni": "One per line: `26/12/2026 > 28/12/2026` (moved) or `06/01/2027 > annullata` (cancelled)."
+        }
+      }
+    },
+    "error": {
+      "eccezione_non_valida": "Invalid line: «{riga}». Use `DD/MM/YYYY > DD/MM/YYYY` or `DD/MM/YYYY > annullata`."
+    }
+  },
+  "selector": {
+    "giorno": {
+      "options": {
+        "0": "Monday",
+        "1": "Tuesday",
+        "2": "Wednesday",
+        "3": "Thursday",
+        "4": "Friday",
+        "5": "Saturday",
+        "6": "Sunday"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "oggi": {
+        "name": "Today"
+      },
+      "domani": {
+        "name": "Tomorrow"
+      },
+      "prossima_raccolta": {
+        "name": "Next collection"
+      },
+      "prossimo_ritiro": {
+        "name": "Next pickup {frazione}"
+      }
     }
   },
   "exceptions": {
@@ -18,11 +97,11 @@
   "services": {
     "cerca": {
       "name": "Search waste item",
-      "description": "Tells where to dispose of an item according to the AGESP dictionary.",
+      "description": "Tells where to dispose of an item according to the AGESP dictionary, with the next pickup date.",
       "fields": {
         "testo": {
           "name": "Item",
-          "description": "What you want to throw away (e.g. polistirolo, pile)."
+          "description": "What you want to throw away."
         },
         "limite": {
           "name": "Maximum results",

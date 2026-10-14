@@ -1,4 +1,4 @@
-// Pagina "Rifiuti" dell'integrazione rifiuti_agesp: ricerca nel dizionario AGESP.
+// Pagina "Rifiuti" dell'integrazione rifiuti_agesp: calendario della raccolta e ricerca nel dizionario AGESP.
 // Web component senza dipendenze: usa i colori del tema attivo di Home Assistant.
 
 const ESEMPI = ["polistirolo", "pile", "cartone della pizza", "olio fritto", "capsule caffè", "pannolini"];
@@ -20,7 +20,22 @@ const coloreTesto = (hex) => {
   return l > 0.62 ? "#1f2937" : "#ffffff";
 };
 
-const normalizza = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+const normalizza = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+// date ISO "2026-10-17" lette come giorno locale, senza spostamenti di fuso orario
+const dataLocale = (iso) => {
+  const [a, m, g] = iso.split("-").map(Number);
+  return new Date(a, m - 1, g);
+};
+const isoOggi = () => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+};
+const FORMATO_GIORNO = new Intl.DateTimeFormat("it-IT", { weekday: "long", day: "numeric", month: "long" });
+const giornoEsteso = (iso) => FORMATO_GIORNO.format(dataLocale(iso));
+const maiuscola = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const quando = (iso, mancanti) => (mancanti === 0 ? "oggi" : mancanti === 1 ? "domani" : giornoEsteso(iso));
+const traQuanto = (mancanti) => (mancanti === 0 ? "oggi" : mancanti === 1 ? "domani" : `tra ${mancanti} giorni`);
 
 // evidenzia nelle voci le parole cercate (stessa radice grezza usata dal motore di ricerca)
 const evidenzia = (voce, testo) => {
@@ -47,6 +62,7 @@ class RifiutiAgespPanel extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this._info = null;
+    this._calendario = null;
     this._risposta = null;
     this._testo = "";
     this._richiesta = 0;
@@ -68,10 +84,37 @@ class RifiutiAgespPanel extends HTMLElement {
   set panel(_panel) {}
   set route(_route) {}
 
+  connectedCallback() {
+    // la pagina può restare aperta per giorni (tablet): a mezzanotte si aggiorna da sola
+    this._controlloGiorno = setInterval(() => this._controllaGiorno(), 60000);
+    this._suVisibilita = () => document.visibilityState === "visible" && this._controllaGiorno();
+    document.addEventListener("visibilitychange", this._suVisibilita);
+  }
+
+  disconnectedCallback() {
+    clearInterval(this._controlloGiorno);
+    document.removeEventListener("visibilitychange", this._suVisibilita);
+  }
+
+  async _controllaGiorno() {
+    if (!this._calendario || this._giornoCaricato === isoOggi()) return;
+    await this._caricaCalendario();
+    if (this._testo) this._cerca(this._testo);
+    else this._disegnaRisultati();
+  }
+
+  async _caricaCalendario() {
+    this._giornoCaricato = isoOggi();
+    this._calendario = await this._hass.callWS({ type: "rifiuti_agesp/calendario" });
+  }
+
   async _avvia() {
     this._disegnaStruttura();
     try {
-      this._info = await this._hass.callWS({ type: "rifiuti_agesp/info" });
+      [this._info] = await Promise.all([
+        this._hass.callWS({ type: "rifiuti_agesp/info" }),
+        this._caricaCalendario(),
+      ]);
     } catch (err) {
       this._mostraErrore(err);
       return;
@@ -185,7 +228,11 @@ class RifiutiAgespPanel extends HTMLElement {
       case "tessili":
         return riga("mdi:information-outline", esc(d.descrizione));
       default:
-        return riga("mdi:home-outline", "Raccolta porta a porta");
+        if (!d.prossimo_ritiro) return riga("mdi:home-outline", "Raccolta porta a porta");
+        return riga(
+          "mdi:home-outline",
+          `Porta a porta · prossimo ritiro <strong>${esc(quando(d.prossimo_ritiro, d.giorni_mancanti))}</strong>`
+        );
     }
   }
 
@@ -253,8 +300,54 @@ class RifiutiAgespPanel extends HTMLElement {
       <div class="esempi">Prova con:
         ${ESEMPI.map((e) => `<button class="chip" data-esempio="${esc(e)}">${esc(e)}</button>`).join("")}
       </div>
+      ${this._sezioneCalendario()}
       <h2>Dove vanno i rifiuti</h2>
       <div class="vetro legenda">${legenda}</div>`;
+  }
+
+  _sezioneCalendario() {
+    const c = this._calendario;
+    if (!c) return "";
+    if (!c.configurato) {
+      return `<div class="vetro avviso"><ha-icon icon="mdi:calendar-alert"></ha-icon>
+        <div><strong>Calendario della raccolta non configurato.</strong>
+        Impostazioni → Dispositivi e servizi → Rifiuti AGESP → Configura.</div></div>`;
+    }
+    const pillole = (g) =>
+      g.frazioni.length
+        ? `<div class="pillole">${g.frazioni.map((d) => this._pillola(d)).join("")}</div>`
+        : `<div class="nessuna">Nessuna raccolta</div>`;
+    const nota = (g) =>
+      g.nota ? `<div class="nota"><ha-icon icon="mdi:calendar-sync"></ha-icon><span>${esc(g.nota)}</span></div>` : "";
+    const { oggi, prossima } = c;
+    const passaggi = c.passaggi
+      .map(
+        (g) => `<li>
+          <div class="voce"><strong>${esc(maiuscola(giornoEsteso(g.data)))}</strong>
+            ${g.giorni_mancanti <= 1 ? `<span class="tag">${traQuanto(g.giorni_mancanti)}</span>` : ""}${nota(g)}</div>
+          <div class="destinazioni">${g.frazioni.map((d) => this._pillola(d)).join("")}</div>
+        </li>`
+      )
+      .join("");
+    return `
+      <div class="raccolta">
+        <div class="vetro giorno${oggi.frazioni.length ? " attivo" : ""}">
+          <div class="etichetta">Oggi</div>
+          <div class="quando">${esc(maiuscola(giornoEsteso(oggi.data)))}</div>
+          ${pillole(oggi)}${nota(oggi)}
+        </div>
+        <div class="vetro giorno">
+          <div class="etichetta">Prossima raccolta</div>
+          ${
+            prossima
+              ? `<div class="quando">${esc(maiuscola(giornoEsteso(prossima.data)))} <small>· ${traQuanto(prossima.giorni_mancanti)}</small></div>
+                 ${pillole(prossima)}${nota(prossima)}`
+              : `<div class="nessuna">Nessuna nei prossimi 60 giorni</div>`
+          }
+        </div>
+      </div>
+      <h2>Prossimi passaggi</h2>
+      <ul class="vetro elenco">${passaggi}</ul>`;
   }
 
   _nonTrovato(r) {
@@ -337,6 +430,17 @@ const STILE = `
   .legenda-voce strong { display: block; font-weight: 500; }
   .legenda-voce span { font-size: 13px; color: var(--secondary-text-color); }
   .bollino { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; }
+  .raccolta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .giorno { padding: 16px 18px; }
+  .giorno.attivo { border-color: var(--primary-color); box-shadow: 0 0 22px -8px var(--primary-color), var(--ha-card-box-shadow, 0 0 0 transparent); }
+  .giorno .quando { font-size: 18px; font-weight: 500; margin-top: 4px; }
+  .giorno .quando small { font-size: 14px; font-weight: 400; color: var(--secondary-text-color); }
+  .giorno .pillole { margin-bottom: 0; }
+  .nessuna { color: var(--secondary-text-color); margin-top: 10px; }
+  .tag {
+    margin-left: 6px; padding: 1px 8px; border-radius: 10px; font-size: 12px;
+    background: var(--primary-color); color: var(--text-primary-color, #fff);
+  }
   .esito {
     margin-top: 20px; padding: 18px 20px;
     border-color: var(--accento);
@@ -377,7 +481,10 @@ const STILE = `
     .elenco li { flex-direction: column; align-items: flex-start; }
     .destinazioni { justify-content: flex-start; max-width: none; }
     .legenda { grid-template-columns: 1fr; }
+    .raccolta { grid-template-columns: 1fr; }
   }
 `;
 
-customElements.define("rifiuti-agesp-panel", RifiutiAgespPanel);
+// dopo un aggiornamento dell'integrazione il browser già aperto carica di nuovo il modulo:
+// il componente esiste già e la versione nuova arriva al prossimo ricaricamento della pagina
+if (!customElements.get("rifiuti-agesp-panel")) customElements.define("rifiuti-agesp-panel", RifiutiAgespPanel);

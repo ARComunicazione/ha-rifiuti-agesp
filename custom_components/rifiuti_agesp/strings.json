@@ -22,12 +22,12 @@
           "carta": "Collection days",
           "vetro": "Collection days",
           "secco": "Collection days",
-          "eccezioni": "One per line: `26/12/2026 > 28/12/2026` (moved) or `06/01/2027 > annullata` (cancelled)."
+          "eccezioni": "One per line: «26/12/2026 > 28/12/2026» (moved) or «06/01/2027 > annullata» (cancelled)."
         }
       }
     },
     "error": {
-      "eccezione_non_valida": "Invalid line: «{riga}». Use `DD/MM/YYYY > DD/MM/YYYY` or `DD/MM/YYYY > annullata`."
+      "eccezione_non_valida": "Invalid line: «{riga}». Use «DD/MM/YYYY > DD/MM/YYYY» or «DD/MM/YYYY > annullata»."
     },
     "abort": {
       "single_instance_allowed": "Rifiuti AGESP is already configured."
@@ -52,12 +52,12 @@
           "carta": "Collection days",
           "vetro": "Collection days",
           "secco": "Collection days",
-          "eccezioni": "One per line: `26/12/2026 > 28/12/2026` (moved) or `06/01/2027 > annullata` (cancelled)."
+          "eccezioni": "One per line: «26/12/2026 > 28/12/2026» (moved) or «06/01/2027 > annullata» (cancelled)."
         }
       }
     },
     "error": {
-      "eccezione_non_valida": "Invalid line: «{riga}». Use `DD/MM/YYYY > DD/MM/YYYY` or `DD/MM/YYYY > annullata`."
+      "eccezione_non_valida": "Invalid line: «{riga}». Use «DD/MM/YYYY > DD/MM/YYYY» or «DD/MM/YYYY > annullata»."
     }
   },
   "selector": {

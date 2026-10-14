@@ -22,12 +22,12 @@
           "carta": "Giorni in cui passa la raccolta",
           "vetro": "Giorni in cui passa la raccolta",
           "secco": "Giorni in cui passa la raccolta",
-          "eccezioni": "Raccolte spostate o annullate, una per riga: `26/12/2026 > 28/12/2026` (spostata) oppure `06/01/2027 > annullata`. Il testo dopo # è un commento."
+          "eccezioni": "Raccolte spostate o annullate, una per riga: «26/12/2026 > 28/12/2026» (spostata) oppure «06/01/2027 > annullata». Il testo dopo # è un commento."
         }
       }
     },
     "error": {
-      "eccezione_non_valida": "Riga non valida: «{riga}». Usa `GG/MM/AAAA > GG/MM/AAAA` oppure `GG/MM/AAAA > annullata`."
+      "eccezione_non_valida": "Riga non valida: «{riga}». Usa «GG/MM/AAAA > GG/MM/AAAA» oppure «GG/MM/AAAA > annullata»."
     },
     "abort": {
       "single_instance_allowed": "Rifiuti AGESP è già configurata."
@@ -52,12 +52,12 @@
           "carta": "Giorni in cui passa la raccolta",
           "vetro": "Giorni in cui passa la raccolta",
           "secco": "Giorni in cui passa la raccolta",
-          "eccezioni": "Raccolte spostate o annullate, una per riga: `26/12/2026 > 28/12/2026` (spostata) oppure `06/01/2027 > annullata`. Il testo dopo # è un commento."
+          "eccezioni": "Raccolte spostate o annullate, una per riga: «26/12/2026 > 28/12/2026» (spostata) oppure «06/01/2027 > annullata». Il testo dopo # è un commento."
         }
       }
     },
     "error": {
-      "eccezione_non_valida": "Riga non valida: «{riga}». Usa `GG/MM/AAAA > GG/MM/AAAA` oppure `GG/MM/AAAA > annullata`."
+      "eccezione_non_valida": "Riga non valida: «{riga}». Usa «GG/MM/AAAA > GG/MM/AAAA» oppure «GG/MM/AAAA > annullata»."
     }
   },
   "selector": {

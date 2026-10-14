@@ -1,0 +1,4001 @@
+{
+ "fonte": "AGESP Busto Arsizio - Dizionario dei rifiuti, ed. gennaio 2024",
+ "contatti": {
+  "numero_verde": "800 439 040",
+  "orari_numero_verde": "lun-ven 8.30-19.00, sabato 8.30-12.30",
+  "cmr": "Via Arturo Tosi 1, Busto Arsizio",
+  "sportello": "Via Canale 26, Busto Arsizio (lun-ven 8.00-14.00, sabato 8.00-12.00)",
+  "email": "igiene.ambientale@agesp.it"
+ },
+ "destinazioni": {
+  "umido": {
+   "nome": "Umido",
+   "descrizione": "Frazione organica (umido)",
+   "tipo": "porta_a_porta",
+   "colore": "#5A3114",
+   "icona": "mdi:food-apple"
+  },
+  "plastica": {
+   "nome": "Plastica",
+   "descrizione": "Plastica (imballaggi)",
+   "tipo": "porta_a_porta",
+   "colore": "#FAB20B",
+   "icona": "mdi:bottle-soda-classic"
+  },
+  "carta": {
+   "nome": "Carta",
+   "descrizione": "Carta, cartone e Tetra Pak",
+   "tipo": "porta_a_porta",
+   "colore": "#918F8F",
+   "icona": "mdi:newspaper-variant"
+  },
+  "vetro": {
+   "nome": "Vetro e lattine",
+   "descrizione": "Vetro, alluminio e banda stagnata",
+   "tipo": "porta_a_porta",
+   "colore": "#27963C",
+   "icona": "mdi:bottle-wine"
+  },
+  "secco": {
+   "nome": "Secco",
+   "descrizione": "Frazione indifferenziata (secco) - sacco con tag RFID",
+   "tipo": "porta_a_porta",
+   "colore": "#00ADEF",
+   "icona": "mdi:trash-can"
+  },
+  "telefonare": {
+   "nome": "Numero verde",
+   "descrizione": "Telefonare al numero verde 800 439 040 (lun-ven 8.30-19.00, sabato 8.30-12.30)",
+   "tipo": "servizio",
+   "colore": "#0B904B",
+   "icona": "mdi:phone"
+  },
+  "tessili": {
+   "nome": "Tessili",
+   "descrizione": "Contenitore stradale per la raccolta dei rifiuti tessili",
+   "tipo": "contenitore",
+   "colore": "#006C5C",
+   "icona": "mdi:tshirt-crew"
+  },
+  "territorio": {
+   "nome": "Contenitori sul territorio",
+   "descrizione": "Contenitori distribuiti sul territorio",
+   "tipo": "contenitore",
+   "colore": "#918F8F",
+   "icona": "mdi:map-marker"
+  },
+  "cmr": {
+   "nome": "Centro Multiraccolta",
+   "descrizione": "Centro Multiraccolta (CMR), Via Arturo Tosi 1, Busto Arsizio",
+   "tipo": "centro",
+   "colore": "#3DB29E",
+   "icona": "mdi:recycle"
+  }
+ },
+ "voci": [
+  {
+   "voce": "Abbigliamento sporco",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Abiti strappati o rotti",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Abiti usati, in buone condizioni",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Accendini",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Accumulatori per auto",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Acetone, flacone con residui, di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Acetone, flacone vuoto, di provenienza domestica",
+   "destinazioni": [
+    "plastica",
+    "vetro"
+   ],
+   "pagina": 3,
+   "logica": "materiale",
+   "nota": "Plastica se il contenitore è di plastica, Vetro se è di vetro"
+  },
+  {
+   "voce": "Acidi, contenitore con residui, di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Acidi, contenitore vuoto di provenienza domestica",
+   "destinazioni": [
+    "plastica",
+    "vetro"
+   ],
+   "pagina": 3,
+   "logica": "materiale",
+   "nota": "Plastica se il contenitore è di plastica, Vetro se è di vetro"
+  },
+  {
+   "voce": "Acquaragia, flacone con residui, di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Acquaragia, flacone vuoto, di provenienza domestica",
+   "destinazioni": [
+    "plastica",
+    "vetro"
+   ],
+   "pagina": 3,
+   "logica": "materiale",
+   "nota": "Plastica se il contenitore è di plastica, Vetro se è di vetro"
+  },
+  {
+   "voce": "Addobbi natalizi",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Agenda con copertina plastificata",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Agenda solo di carta",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Aghi e spilli da cucito ben protetti",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Alberi di Natale finti di grandi dimensioni",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Alberi di Natale finti di piccole dimensioni",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Alberi di Natale veri",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Alcool, flacone con residui, di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Alcool, flacone vuoto, di provenienza domestica",
+   "destinazioni": [
+    "plastica",
+    "vetro"
+   ],
+   "pagina": 3,
+   "logica": "materiale",
+   "nota": "Plastica se il contenitore è di plastica, Vetro se è di vetro"
+  },
+  {
+   "voce": "Alimentari",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Alimentari avariati di provenienza domestica",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Alluminio - vaschette e fogli",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Amianto",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Ammoniaca, flacone con residui, di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Ammoniaca, flacone vuoto, di provenienza domestica",
+   "destinazioni": [
+    "plastica",
+    "vetro"
+   ],
+   "pagina": 3,
+   "logica": "materiale",
+   "nota": "Plastica se il contenitore è di plastica, Vetro se è di vetro"
+  },
+  {
+   "voce": "Armadi in legno",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Armadi in metallo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Asciugacapelli",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Asciugamano sporco",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Aspirapolvere",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Asse da stiro",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Assorbenti igienici",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Astucci",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Attaccapanni in ferro",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Attaccapanni in legno",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Attaccapanni in metallo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Attaccapanni in plastica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Avanzi di cibo",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Baby monitor",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Baby phone",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Bacinelle in plastica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Bambole",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Bambù",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Bancali in legno",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Bandiere di stoffa",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Barattoli di vernice di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 3
+  },
+  {
+   "voce": "Barattoli in plastica",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Barattoli in plastica per gelati",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Barattoli per alimenti (tonno, pelati, etc.)",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Barattoli per salviette",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bastoncini cotonati usa e getta",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Batterie auto",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Batterie per cellulari",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bauli",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Biancheria intima",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Biberon, ciucci",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bicchiere compostabile marchiato “ok compost”",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bicchieri di plastica",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bicchieri in vetro",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Biciclette",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bidet",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bigiotteria",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Biglie di plastica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Biglie di vetro",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Biglietto autobus, treno, metro (anche con banda magnetica)",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bigodini",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Biro",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bistecchiere",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Blister o contenitori rigidi o sagomati in plastica (gusci per giocattoli, per pile, per articoli di cancelleria, etc.)",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Blu ray e relative custodie",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bombole gas",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bombolette per alimenti (vuote)",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Borsa della spesa in carta",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Borse di pelle o tela",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Borse per acqua calda e per ghiaccio",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bottiglie in plastica",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bottiglie in vetro",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bottoni",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Box doccia",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Box per bambini",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Box toilette per piccoli animali domestici",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Braccialetti elastici",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Braccioli da nuoto",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Bucce, gusci, semi di frutta",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Buste delle lettere (anche con finestra di plastica)",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Buste e bustine in alluminio (anche per alimenti)",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Buste imbottite",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Buste in plastica per alimenti in genere",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Caffettiera",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Calamite",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Calcinacci in quantità limitata (max 5 secchi/anno)",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Calcolatrice",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Calendario da muro o da tavolo in Carta e cartone",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Calendario da muro o da tavolo plastificato o di più materiali",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Calzature usate",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Calze in buono stato",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Calze in nylon",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Calze rotte",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Camere d'aria di bicicletta",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Candeggina, flacone vuoto, di provenienza domestica",
+   "destinazioni": [
+    "plastica",
+    "vetro"
+   ],
+   "pagina": 4,
+   "logica": "materiale",
+   "nota": "Plastica se il contenitore è di plastica, Vetro se è di vetro"
+  },
+  {
+   "voce": "Candele",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Candeliere in ferro",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 4
+  },
+  {
+   "voce": "Candeliere in plastica o in più materiali",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Canne da pesca",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Canne per irrigazione di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Canniccio da recinzione",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cannucce per bibite",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cannuccia compostabile marchiata \"ok compost\"",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Capelli",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cappelli usati",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Caraffe in vetro",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carbone - carbonella",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carne",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carrozzine",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carta accoppiata per alimenti",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carta assorbente",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carta assorbente sporca di sostanze chimiche/olio di provenienza domestica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carta bagnata d'acqua",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carta carbone",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carta da pacchi",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carta da parati",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carta plastificata",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carta sporca con vernici e solventi",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carta stagnola",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carta velina",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carta vetrata",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Carte da gioco plasticate",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cartelle portadocumenti plurimateriale",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cartone catramato",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cartongesso",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cartoni (meglio se spezzettati)",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cartucce per stampanti",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Caschi per moto/motorini",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cassetta igienica per animali domestici",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cassette audio e video",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cassette di legno",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cassette in plastica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cassette per la frutta e la verdura",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cellophane per alimenti, non alimenti, film plastici in genere",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cellulare",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Ceneri spente di caminetti/stufe di legno verniciato",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Ceneri spente di legno NON verniciato",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cera di candela",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cerchietto per capelli",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cerini",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cerotti",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cestini porta-rifiuti in plastica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Chiodi",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Chips da imballaggio in polistirolo espanso",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Ciabatte",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Ciabatte in gomma",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cialde (a filtro) compostabili per macchine da caffè",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cialde (capsule) per macchine da caffè",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cibo avariato",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Ciclomotore",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cinture",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Ciotola per animali in metallo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Ciotola per animali in plastica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cocci e piatti di ceramica, vasi di terracotta, porcellana, in grandi quantità",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Cocci e piatti di ceramica, vasi di terracotta, porcellana, in piccole quantità",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 5
+  },
+  {
+   "voce": "Colle stick non infiammabili",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Colore in latta / tanica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Combustibili liquidi",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Compact Disc (CD)",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Compasso",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Computer di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Conchiglie, gusci, cozze, etc.",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Condizionatore di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Confenzioni in carta di merendine, sale, zucchero, farina,pasta ..",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Confezioni in cartoncino per alimenti (porta uova, scatole pasta, riso..)",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Confezioni in plastica di merendine, patatine, caramelle",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Confezioni in plastica rigide/ sagomate per alimenti e impronte/cover",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Congelatore di servizio di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Contagocce in plastica",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Contagocce in plastica e vetro",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Contenitori in banda stagnata",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Contenitori in plastica per alimenti per animali",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Contenitori in vetro (vasi per conserve, marmellate, etc.)",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Contenitori metallici",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Contenitori poliaccoppiati per bevande / alimenti (tetra pak)",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Coperchio in alluminio per trasporto alimenti",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Coperchio in plastica",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Coperchio metallico",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Coperta sporca",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cornici in legno",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cornici in plastica di medie o grandi dimensioni",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cornici in plastica di piccole dimensioni",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cosmetici",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cotone idrofilo usato",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cotton fioc",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cristallo (bicchieri, vasi, posacenere, ecc.)",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cucchiaio compostabile marchiato \"ok compost\"",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cucchiaio di legno",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cucchiaio di metallo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cucchiaio di plastica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cucitrice",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cuffia da piscina",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cuoio",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Cuscini",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Custodie per CD, Videocassette",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Custodie per cellulari",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Damigiane",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Dentiere, di provenienza domestica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Deodoranti in stick",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Depliant non plastificati",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Dischetti per togliersi il trucco",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Dischi in vinile",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 6
+  },
+  {
+   "voce": "Disinfettanti scaduti",
+   "destinazioni": [
+    "cmr",
+    "territorio"
+   ],
+   "pagina": 7,
+   "logica": "alternativa",
+   "nota": "Centro Multiraccolta oppure contenitori sul territorio"
+  },
+  {
+   "voce": "Dispensatore in plastica per detergenti, shampoo",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Dispensatore in plastica per salse, creme, yogurt, miele, etc.",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Divani",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "DVD",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Elastici di tutti i tipi, anche quelli per i braccialetti",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Elettrodomestici provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Erba",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Escrementi piccoli animali domestici",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Estintori",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Eternit",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Etichette adesive",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Etichette di carta",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Etichette plastificate",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Evidenziatori",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Faldoni in carta",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Faldoni in cartone",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Farina",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Farmaci",
+   "destinazioni": [
+    "cmr",
+    "territorio"
+   ],
+   "pagina": 7,
+   "logica": "alternativa",
+   "nota": "Centro Multiraccolta oppure contenitori sul territorio"
+  },
+  {
+   "voce": "Fazzoletti venuti a contatto con alimenti o fazzoletti usati",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Federe",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Feltrini",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Ferro e metalli",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Fiale vuote di medicinali",
+   "destinazioni": [
+    "cmr",
+    "territorio"
+   ],
+   "pagina": 7,
+   "logica": "alternativa",
+   "nota": "Centro Multiraccolta oppure contenitori sul territorio"
+  },
+  {
+   "voce": "Fiammiferi in legno",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Figurine (anche solo retro)",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Figurine di carta",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Figurine plastificate",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Fili elettrici, di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Filo interdentale",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Filtri da Thè, tisane, camomilla",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Finestre (lastre di vetro) in quantità limitata",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Finestre (telai) in quantità limitata",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Fiori finti",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Fiori recisi",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Flaconi in plastica per detersivi, prodotti igiene intima, vuoti",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Flaconi in vetro",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Flaconi/dispensatori in plastica per salse, yogurt, dessert, sciroppi",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Floppy disk",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Fogli di alluminio",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Fogli di carta",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Fogli tabulati usati",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Fogliame verde",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Fondi di caffè",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Forbici di ferro",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Forbici fatte di più materiali",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 7
+  },
+  {
+   "voce": "Forchetta compostabile marchiata “ok compost”",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Forno a microonde di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Forno elettrico di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Fotocopiatore di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Fotografie, diapositive",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Friggitrice di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Frigorifero di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Frullatore elettrici di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Frutta non commestibile",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Fustini in cartone",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Ganci per chiusura sacchetti",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Garze usate per medicazioni",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Giacche e giacconi usati",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Giochi, giocattoli di grandi dimensioni (no componenti elettrici o pile)",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Giochi, giocattoli di piccole dimensioni (no componenti elettrici o pile)",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Giornali e riviste",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Girello per bambini",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Gomma da cancellare",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Gomma da masticare",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Gommapiuma in piccole quantità",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Goniometro in metallo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Goniometro in plastica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Grattugia",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Grondaie",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Grucce appendiabiti",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Guaina catramata",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Guanti in gomma / lattice",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Guanti in tessuto / lana",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Guarnizioni",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Gusci d'uovo",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Gusci di noci, nocciole e altra frutta secca",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Gusci per elettrodomestici di grandi dimensioni in polistirolo",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Gusci per piccoli elettrodomestici in polistirolo",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Hi-Fi",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 8
+  },
+  {
+   "voce": "Imballaggi contaminati da sostanze pericolose, di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Incensi",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Indumenti (no stracci)",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Infissi in legno in quantità limitata",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Infissi in metallo in quantità limitata",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Infradito",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Insetti",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Insetticida per uso domestico",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Intonaci",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Involucro compostabile (giornali, riviste) in mater-b",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Isolanti liquidi da parete e pitture",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lacche, di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lacci per scarpe",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lamette usa e getta con protezione lama",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lamiere",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lampada a LED",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lampada a risparmio energetico",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lampada a scarica ad alta intensità",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lampada a vapori di sodio",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lampada notte bimbo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lampadari, di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lampadine a energia solare",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lampadine a filamento (a incandescenza) ben protette",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lana di roccia",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Laptop",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lastre di vetro",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lastre mediche",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lattine in alluminio per bevande (aranciata, gassosa, birra)",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lavandino in ceramica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lavastoviglie di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lavatrice di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Legno (mobili, cassette, etc.)",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lenti a contatto usate",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lenti di occhiali",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lettiera completamente biodegradabile/compostabile",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lettiera, argilla, carbone attivo, silicio, bentonite e altro per piccoli animali domestici",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Libri senza copertina plastificata",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lische di pesce",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lucidascarpe",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lumini votivi elettrici",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Lumini votivi in cera",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 9
+  },
+  {
+   "voce": "Macchina fotografica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Macchine per cucire manuali di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Macchine per cucire, con parte elettronica, di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Mastelli in plastica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Materassi di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Matite",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Mattoni, di provenienza domestica in quantità limitata (max 5 secchi/anno)",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Medicinali scaduti",
+   "destinazioni": [
+    "cmr",
+    "territorio"
+   ],
+   "pagina": 10,
+   "logica": "alternativa",
+   "nota": "Centro Multiraccolta oppure contenitori sul territorio"
+  },
+  {
+   "voce": "Metro (in plastica, legno, metallo, etc.)",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Misuratore di pressione elettronico",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Mobili composti da più materiali",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Mobili di legno",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Monitor di computer di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Monopattino elettrico",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Monopattino meccanico",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Montatura per occhiali",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Mozziconi spenti di sigarette",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Nastro adesivo",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Nastro per pacchi regalo",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Negativi fotografici",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Neon e tubi fluorescenti di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Occhiali",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Occhialini da nuoto",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Oggetti di gomma",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Olio alimentare (ad es. olio patate fritte, etc.)",
+   "destinazioni": [
+    "cmr",
+    "territorio"
+   ],
+   "pagina": 10,
+   "logica": "alternativa",
+   "nota": "Centro Multiraccolta oppure contenitori sul territorio"
+  },
+  {
+   "voce": "Olio motore (ad es. olio della macchina, etc.) di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Ombrelli",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Ombrelloni",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Ossa piccole di animali",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 10
+  },
+  {
+   "voce": "Packaging compostabile in mater-b",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Paglia da imballaggio plastificata",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Paglia naturale, uso domestico",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Paletta per le mosche",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Paletta per raccogliere i rifiuti",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Palloncino",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Palloni da gioco",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pane vecchio",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pannelli in truciolare o compensato",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Panni per la polvere",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pannolini, pannoloni,traverse assorbenti",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pasta",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pellicola trasparente",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pellicole da imballaggio",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pellicole fotografiche",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Peluche",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Penna",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pennarello",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pennelli uso scolastico",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pentole in metallo e similari",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Persiane in quantità limitata",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pettini",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Phon (asciugacapelli) di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Piante",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Piantine e terriccio",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Piastrelle in quantità limitata (max 5 secchi/anno)",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Piastrine anti zanzare",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Piatti in ceramica, grandi quantità",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Piatti in ceramica, piccole quantità",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Piatti in plastica",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Piatto compostabile marchiato \"ok compost\"",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Piatto doccia in ceramica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pile esaurite - esauste",
+   "destinazioni": [
+    "cmr",
+    "territorio"
+   ],
+   "pagina": 11,
+   "logica": "alternativa",
+   "nota": "Centro Multiraccolta oppure contenitori sul territorio"
+  },
+  {
+   "voce": "Piume",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Piumino (coperta)",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Piumino (giubbino)",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Pneumatici",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Polistirolo da imballaggio di grandi dimensioni",
+   "destinazioni": [
+    "secco",
+    "cmr"
+   ],
+   "pagina": 11,
+   "logica": "alternativa",
+   "nota": "Secco oppure Centro Multiraccolta"
+  },
+  {
+   "voce": "Polistirolo da imballaggio di piccole dimensioni",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Polistirolo, chips",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Polistirolo, imballaggio per alimenti",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Polistirolo, vaschette",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Poltrone",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Polvere",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Porcellana in piccole quantità",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Portafogli e portamonete",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Porte e infissi in legno in quantità limitata",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Posate di acciaio",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Posate in plastica usa e getta",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Potature di siepi, cespugli e rosai",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Preservativi usati",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Profumi, flaconi vuoti plastica",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Profumi, flaconi vuoti vetro",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 11
+  },
+  {
+   "voce": "Quaderni, senza copertina plastificata",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Quadri",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Racchette (da sci, tennis, etc.)",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Radio di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Radiografie",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Ramaglie",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Rasoi elettrici",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Rasoi usa e getta (lamette) con copertura/protezione lama",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Reggette per legatura pacchi",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Resti alimentari",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Rete di plastica da recinzione",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Rete metallica da recinzione",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Reti per letti",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Retine per frutta e verdura",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Retino da pesca",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Righello in alluminio",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Righello in metallo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Righello in plastica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Riviste non plasticate",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Rullino fotografico",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Sacchetti di carta con interno in alluminio o plastica",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Sacchetti di carta, pacchetti di sigarette senza pellicola trasparente",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Sacchetti in plastica con interno in alluminio",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Sacchetti in plastica per alimenti",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Sacchetto compostabile in mater-bi",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Sacchetto usato per aspirapolvere",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Salviette di carta",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Salviette di carta imbevute di sostanze tossico/nocive (alcool, varechina, etc.)",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Sanitari",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Sapone",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Scale pieghevoli in legno",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Scale pieghevoli in metallo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Scarpe usate",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 12
+  },
+  {
+   "voce": "Scatole di cartone e bugiardini delle medicine",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Scatole e buste in plastica per confezionamento capi di abbigliamento",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Scatole pizza da asporto",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Scatolette per tonno o altri alimenti, per persone o animali",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Schermi di computer",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Sci",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Scodella in ceramica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Scolapasta in plastica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Scopa (intera)",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Scopa (manico legno)",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Secchio in plastica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Sedie e sdraio in plastica da giardino",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Seggiolini auto per bambini",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Sfalci d'erba",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Sigaretta elettronica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Siringhe ed aghi (adeguatamente protetti)",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Smalto per unghie (contenitore)",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Smartwatch",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Solette per scarpe",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Sottovasi in plastica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Spazzole",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Spazzolini da denti",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Specchi",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Specchi tascabili",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Spilla da maglietta, in due materiali",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Spoglie di animali",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Spugne per pulire e lavare",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Spugne sintetiche per composizioni floreali",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Squadretta in metallo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Squadretta in plastica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Stagnola",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Stendibiancheria",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Stereo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Sticker (anche solo retro)",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Stoffe rotte",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Stracci",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Strumenti musicali in legno",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Strumenti musicali in metallo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Strumento musicale elettrico / elettronico",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Stufe di ferro",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Stuoia da spiaggia",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Stuzzicadenti",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Sveglia elettrica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Tagliere in legno",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Tagliere in plastica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Taniche vuote",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Tapparelle in quantità limitata",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Tappeti",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 13
+  },
+  {
+   "voce": "Tappi di sughero in quantità limitate",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tappi in metallo",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tappi in plastica",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tastiera del computer",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tavole di legno",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tavoli in plastica da giardino",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tazze e tazzine in piccole quantità",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Telefono - cellulare di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Telefono fisso di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Televisore di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tende",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Termometro a mercurio",
+   "destinazioni": [
+    "telefonare"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Termometro elettrico",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Termosifoni in quantità limitata",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Terra",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Terracotta in piccole quantità",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Terriccio da vaso",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Terrine in plastica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tessera autobus/treno con chip",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tessuti (no stracci)",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tetra Pak (cartone del latte, panna, succhi, etc.)",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tintura per capelli",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Toner",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Trapano",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Trapunta",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Triciclo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tronchi e rami di grosse dimensioni",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tubetti di colore a olio",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tubetti di conserva",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tubetti di dentifricio",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tubi al neon (lampade a fluorescenza)",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tubi di metallo",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tubi in gomma",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Tubi in PVC",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Umidificatore elettrico",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Umidificatore in ceramica",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Unghie",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Uova",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 14
+  },
+  {
+   "voce": "Valigie",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Vaschette in alluminio per alimenti, prevalentemente pulite",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Vaschette in plastica per alimenti, prevalentemente pulite",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Vasetto yogurt",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Vasi da fiori e piante per vendita e trasporto",
+   "destinazioni": [
+    "plastica"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Vasi in ceramica o porcellana in piccole quantità",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Vaso di plastica per fiori e piante",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Vaso e vasetti in vetro",
+   "destinazioni": [
+    "vetro"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Veneziane in quantità limitata",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Verdura",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Vernici",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Vestiti puliti",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Vetri rotti",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Vetro termico tipo pirex",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Videocassette",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Videoregistratore di provenienza domestica",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Volantini pubblicitari",
+   "destinazioni": [
+    "carta"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Vongole",
+   "destinazioni": [
+    "umido"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Walkie talkie",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Wc",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Zainetti usati e rotti",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Zainetti usati in buono stato",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Zanzariere",
+   "destinazioni": [
+    "cmr"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Zerbino di piccole dimensioni",
+   "destinazioni": [
+    "secco"
+   ],
+   "pagina": 15
+  },
+  {
+   "voce": "Zoccoli",
+   "destinazioni": [
+    "tessili"
+   ],
+   "pagina": 15
+  }
+ ]
+}

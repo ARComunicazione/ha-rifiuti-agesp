@@ -1,0 +1,34 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Rifiuti AGESP",
+        "description": "Adds the **Rifiuti** page to the sidebar, with search in the AGESP (Busto Arsizio) waste dictionary, January 2024 edition."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Rifiuti AGESP is already configured."
+    }
+  },
+  "exceptions": {
+    "non_configurata": {
+      "message": "The Rifiuti AGESP integration is not configured."
+    }
+  },
+  "services": {
+    "cerca": {
+      "name": "Search waste item",
+      "description": "Tells where to dispose of an item according to the AGESP dictionary.",
+      "fields": {
+        "testo": {
+          "name": "Item",
+          "description": "What you want to throw away (e.g. polistirolo, pile)."
+        },
+        "limite": {
+          "name": "Maximum results",
+          "description": "Maximum number of dictionary entries to return."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+cerca:
+  fields:
+    testo:
+      required: true
+      example: "polistirolo"
+      selector:
+        text:
+    limite:
+      default: 10
+      selector:
+        number:
+          min: 1
+          max: 50
+          mode: box

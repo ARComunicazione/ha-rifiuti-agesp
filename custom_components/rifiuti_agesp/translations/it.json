@@ -1,0 +1,34 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Rifiuti AGESP",
+        "description": "Aggiunge la pagina **Rifiuti** alla barra laterale, con la ricerca nel Dizionario dei rifiuti AGESP di Busto Arsizio (ed. gennaio 2024)."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Rifiuti AGESP è già configurata."
+    }
+  },
+  "exceptions": {
+    "non_configurata": {
+      "message": "L'integrazione Rifiuti AGESP non è configurata."
+    }
+  },
+  "services": {
+    "cerca": {
+      "name": "Cerca rifiuto",
+      "description": "Dice dove buttare un rifiuto secondo il dizionario AGESP.",
+      "fields": {
+        "testo": {
+          "name": "Rifiuto",
+          "description": "Cosa devi buttare (es. polistirolo, pile, cartone della pizza)."
+        },
+        "limite": {
+          "name": "Numero massimo di risultati",
+          "description": "Quante voci del dizionario restituire al massimo."
+        }
+      }
+    }
+  }
+}
